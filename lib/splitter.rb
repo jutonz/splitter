@@ -5,12 +5,13 @@ require 'splitter/version.rb'
 
 module Splitter 
   class Splitter
-    attr_accessor :file_to_split
+    attr_accessor :file_to_split, :cuefile
 
-    def initialize(file_to_split)
+    def initialize(file_to_split, cuefile)
       raise "The file #{file_to_split} doesn't exist" unless File.exist? file_to_split
 
       self.file_to_split = file_to_split
+      self.cuefile = cuefile
     end
 
   end

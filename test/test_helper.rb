@@ -1,11 +1,9 @@
-require 'test/unit'
+require 'minitest/autorun'
+require 'minitest/reporters'
+
 require 'tempfile'
+
 require_relative '../lib/splitter'
 
-# Add test libraries you want to use here, e.g. mocha
-
-class Test::Unit::TestCase
-
-  # Add global extensions to the test case class here
-  
-end
+reporter_options = { color: true }
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]

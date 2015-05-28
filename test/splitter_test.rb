@@ -1,30 +1,34 @@
 require 'test_helper'
 
-class SplitterText < Test::Unit::TestCase
-
-  def setup
-    @tempfile = Tempfile.new ['temp', '.cue']
-    @splitter = Splitter::Splitter.new @tempfile
+describe Splitter do
+  before do
+    @tempfile = Tempfile.new ['temp', '.mp3']
+    @tempcue  = Tempfile.new ['temp', '.cue']
+    @splitter = Splitter::Splitter.new @tempfile, @tempcue
   end
 
-  def tear_down
+  after do
     @tempfile.close
+    @tempcue.close
+  end 
+
+  it 'remembers the file to be split' do
+    assert_equal @splitter.file_to_split, @tempfile
   end
 
-  def test_initialize_with_good_file
-    splitter = Splitter::Splitter.new @tempfile
-    assert_equal splitter.file_to_split, @tempfile
+  it 'remembers the cuefile' do
+    assert_equal @splitter.cuefile, @tempcue
   end
 
-  def test_initialize_with_bad_file
-    assert_raise do 
-      splitter = Splitter::Splitter.new 'doesnt_exist'
+  it 'complains if the file to split does not exist' do
+    assert_raises RuntimeError do
+      Splitter::Splitter.new 'fakefile', @tempcue
     end
   end
 
-  def test_initialize_with_no_file
-    assert_raise do
-      splitter = Spliter::Splitter.new
+  it 'complains if the cuefile does not exist' do
+    assert_raises RuntimeError do
+      Splitter::Splitter.new @tempfile, 'fake_cue'
     end
   end
 
