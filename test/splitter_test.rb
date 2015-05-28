@@ -26,9 +26,37 @@ describe Splitter do
     end
   end
 
+  it 'complains if the file to split is not an mp3' do
+    temppdf = Tempfile.new ['temp', '.pdf']
+    err = assert_raises RuntimeError do
+      Splitter::Splitter.new temppdf, @tempcue
+    end
+    assert_equal err.message, "The file #{temppdf.path} must be a mp3"
+  end
+
   it 'complains if the cuefile does not exist' do
     assert_raises RuntimeError do
       Splitter::Splitter.new @tempfile, 'fake_cue'
+    end
+  end
+
+  it 'complains if the cuefile is not actually a cuefile' do
+    temppdf = Tempfile.new ['temp', '.pdf']
+    err = assert_raises RuntimeError do 
+      Splitter::Splitter.new @tempfile, temppdf
+    end
+    assert_equal err.message, "The file #{temppdf.path} must be a cue"
+  end
+
+  describe '.detect_radioshow' do
+    it 'detects ASOT' do
+      cuesheet = 'test/cues/asot714.cue'
+      assert_equal :asot, Splitter::Splitter.detect_radioshow(cuesheet)
+    end
+
+    it 'defaults to generic' do
+      cuesheet = 'test/cues/generic.cue'
+      assert_equal :generic, Splitter::Splitter.detect_radioshow(cuesheet)
     end
   end
 
