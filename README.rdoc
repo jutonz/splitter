@@ -1,0 +1,6 @@
+= splitter
+
+Describe your project here
+
+:include:splitter.rdoc
+
