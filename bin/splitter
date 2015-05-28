@@ -11,34 +11,42 @@ version Splitter::VERSION
 subcommand_option_handling :normal
 arguments :strict
 
-desc 'Describe some switch here'
-switch [:s,:switch]
-
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f,:flagname]
-
-desc 'Describe split here'
-arg_name 'Describe arguments to split here'
+desc 'Splits media files using cuefiles'
+arg_name '[mediafile.mp3]'
 command :split do |c|
   c.desc 'The cue file used split the file'
   c.flag [:u, :using]
 
-  # c.arg_name 'file'
-  # c.arguments :file
+  c.desc 'Force overwrite existing output directories. Use with care.'
+  c.switch [:f, :force]
 
   c.action do |global_options,options,args|
- 
-    file = args[0]
-    raise 'You must specify a valid file as the first argument to split' if file.nil?
+    mediafile = args[0]
+    raise 'You must specify a valid file as the first argument to split' if mediafile.nil?
+    
+    cuefile = options[:using]
 
-    # Your command logic here
-     
-    # If you have any errors, just raise them
-    # raise "that command made no sense"
+    splitter = Splitter::Splitter.new mediafile, cuefile
+    begin 
+      splitter.split_dry_run
+    rescue Splitter::OutputFolderExists => ex
+      unless options[:force]
+        raise "The output folder #{output_folder} already exists. Use --force to override."
+      else
+        output_folder = ex.message
+        puts "Output folder exists. Deleting because of force switch."
+        FileUtils.rm_r output_folder
+      end
+    end
 
-    puts "split command ran"
+    print 'Splitting...'
+    output_folder = splitter.split!
+    puts "done!"
+
+    puts "Calculating replaygain..."
+    Splitter::ReplayGain.apply_album_gain output_folder
+
+    puts "Files located in #{output_folder}"
   end
 end
 

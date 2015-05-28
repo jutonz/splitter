@@ -1,5 +1,5 @@
 PERFORMER "Armin van Buuren"
-TITLE "Some random file"
+TITLE "generic title"
 FILE "Armin_Van_Buuren_-_A_State_Of_Trance_714.mp3" MP3
   TRACK 01 AUDIO
     PERFORMER "A State of Trance"

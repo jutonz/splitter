@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/jutonz/when_was
-  revision: fd6070a350a5b6a421bd85052a59d1474ace76e8
-  specs:
-    when_was (0.1.0)
-
 PATH
   remote: .
   specs:
@@ -60,6 +54,7 @@ GEM
     rspec-support (3.2.2)
     ruby-progressbar (1.7.5)
     rubycue (0.1.0)
+    when_was (0.2.0)
 
 PLATFORMS
   ruby
@@ -71,5 +66,7 @@ DEPENDENCIES
   minitest-reporters
   rake
   rdoc
+  ruby-progressbar
+  rubycue
   splitter!
-  when_was!
+  when_was

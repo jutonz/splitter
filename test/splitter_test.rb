@@ -48,15 +48,15 @@ describe Splitter do
     assert_equal err.message, "The file #{temppdf.path} must be a cue"
   end
 
-  describe '.detect_radioshow' do
+  describe '.determine_output_location' do
     it 'detects ASOT' do
       cuesheet = 'test/cues/asot714.cue'
-      assert_equal :asot, Splitter::Splitter.detect_radioshow(cuesheet)
+      assert_equal "714 (21 May 2015)", Splitter::Splitter.determine_output_location(cuesheet)
     end
 
-    it 'defaults to generic' do
+    it 'defaults to the title in the cuefile' do
       cuesheet = 'test/cues/generic.cue'
-      assert_equal :generic, Splitter::Splitter.detect_radioshow(cuesheet)
+      assert_equal 'generic title', Splitter::Splitter.determine_output_location(cuesheet)
     end
   end
 
