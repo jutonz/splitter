@@ -2,6 +2,10 @@
 
 Splits mp3 files using their associated cuefiles. Also applies album ReplayGain to each split file's tag. 
 
+## Installation
+
+`sudo apt-get install libtag1-dev mp3gain`
+
 ## Usage
 
 `splitter split great.mp3` Assumes a file called great.cue exists in the same directory
