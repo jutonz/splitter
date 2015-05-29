@@ -34,20 +34,20 @@ module Splitter
           raise OutputFolderExists.new output_folder
         end
       end
-      split_to! output_folder
+      split_to! output_folder, options
     end
 
-    def split_to!(output_folder)
-      options = Hash.new
-      options[:quiet] = true
-      options[:output_folder] = output_folder
-      options[:format] = "@N2. @p - @t"
+    def split_to!(output_folder, options = {})
+      opts = Hash.new
+      opts[:quiet] = true
+      opts[:output_folder] = output_folder
+      opts[:format] = options[:format] if options[:format]
 
       if File.exist? output_folder
         raise OutputFolderExists.new output_folder
       end
 
-      splitter = CueSnap::Splitter.new file_to_split, cuefile, options
+      splitter = CueSnap::Splitter.new file_to_split, cuefile, opts
       splitter.split! 
 
       return output_folder

@@ -3,3 +3,5 @@ global:
   album_artist: Various Artists
   genre: Trance
   disc_number: 1
+track:
+  track_format: "@N2. @p - @t"

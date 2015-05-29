@@ -32,6 +32,10 @@ module Splitter
       return File.join(File.dirname(mediafile), folder)
     end
 
+    def track_format
+      @standards['track']['track_format']
+    end
+
     def airdate
       WhenWas.ASOT episode_number
     end
