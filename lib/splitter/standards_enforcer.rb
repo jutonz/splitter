@@ -15,15 +15,6 @@ module Splitter
       @standards = YAML.load_file STANDARDS_FILE
     end
 
-    def enforce!(options = {})
-      progress = options[:report_progress_to]
-      progress.total = 2 unless progress.nil?
-      progress.increment unless progress.nil?
-      cuesheet.title = album_title
-      progress.increment unless progress.nil?
-      return cuesheet
-    end
-
     def parse!(cuesheet)
       cuesheet = RubyCue::Cuesheet.new(File.read(cuesheet))
       cuesheet.parse!

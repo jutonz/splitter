@@ -32,6 +32,12 @@ describe Splitter::StandardsEnforcer do
     assert_equal 'A State of Trance 714', @standards.album_title
   end
 
+  it 'defaults to the title in the cue for album title' do
+    @cuesheet  = 'test/cues/generic.cue'
+    @standards = Splitter::StandardsEnforcer.new @tempmedia, @cuesheet
+    assert_equal "generic title", @standards.album_title
+  end
+
   it 'recommends appropriate tags' do
     expected = Hash.new
     expected[:genre]        = 'Trance'
