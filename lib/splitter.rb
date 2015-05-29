@@ -41,6 +41,7 @@ module Splitter
       opts = Hash.new
       opts[:quiet] = true
       opts[:output_folder] = output_folder
+      opts[:report_progress_to] = options[:report_progress_to]
       opts[:format] = options[:format] if options[:format]
 
       if File.exist? output_folder

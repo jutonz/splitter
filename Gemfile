@@ -5,7 +5,7 @@ gemspec
 gem 'when_was'
 
 # Use cuesnap for splitting mp3's from cuefiles
-gem 'cuesnap', git: 'https://github.com/jutonz/cuesnap.git'
+gem 'cuesnap', git: 'https://github.com/jutonz/cuesnap.git', branch: 'progress'
 
 # Use rubycue for reading cuesheets
 gem 'rubycue'

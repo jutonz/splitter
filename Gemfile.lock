@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/jutonz/cuesnap.git
-  revision: 6ee594d74f5600db1592d93139736790a2c6d675
+  revision: 4f55f603e315641c7e39ca3365a014eab600c570
+  branch: progress
   specs:
     cuesnap (1.2.5)
       hashie (~> 1.2.0)

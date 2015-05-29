@@ -31,9 +31,8 @@ command :split do |c|
 
     output_folder = standards.output_folder
     begin
-      print 'Splitting...'
-      splitter.split! to: output_folder, force: options[:force], format: standards.track_format
-      puts "done!"
+      progress_bar = ProgressBar.create title: 'Splitting'
+      splitter.split! to: output_folder, force: options[:force], format: standards.track_format, report_progress_to: progress_bar
     rescue Splitter::OutputFolderExists => e
       puts ''
       raise "The output folder #{e.message} already exists. Use --force to overwrite."

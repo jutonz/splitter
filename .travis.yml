@@ -3,3 +3,10 @@ rvm:
 - 2.2.1
 sudo: required
 before_install: sudo apt-get install libtag1-dev mp3gain
+deploy:
+  provider: rubygems
+  api_key:
+    secure: Le/BMHjWj6t3tpRL2+Ici+1QqYCQOkuZAUDCLOzY9LfMff3u9lFm4golZ8st4ytxeyHDu9koydqBCyhjVnKR4eAff3tuY/UR3mjR3j9jt0Sl06BwG+spsTN9bpxZdGUecWQQCd9v4DeqTKhboDkoPhUzb7bmXtuJuuqWcYyBdpIFgqgz/ke/vvexVkRqrkoeV+bFuHVYKII7s4EwP1absXQgScFabrUbcXWs58eKPE/MHQHI9m178tG+ttlSZ/IPJFzZMwiyKLhO8by1edhxDpT1oeYTS8hGZTMuDTpMDJVD5CYFlfIkHmX6HOJkXTAQ+f5MD/bDyt1v4vw1bWe9NORhxt1kxQP2NzdzNvIynvF+oRi0M3+ZhQ1ShH4KjBI8oD+/YLmO/XlFGTTk9j6pNt6HTDv6rEkBmo0J8NGd59mbVNzNww9kmQZapSRAL2lYfjx+a+pR1bo9Z1Pcm5g9XYg29gKVrckq/Iat0NaCmcbF06JSh436WkVU3loV8sQ5G8aNUOXPlM8vG+g0gFpKxXK0cN/2rpfA0izHn6wL5TBoTkOPeAOHbaTuocjb9Mu2ivbj3YBF+TDIVWHx5k+QfvWU+kMaj6JCSfUHvEvuuSws6LzCK5U0GUyQSq8NnpgfLbJkAV6HtinZgMqxAT1Sq6+Un+UPImzSHfp+DjBlJos=
+  gem: cuesplit
+  on:
+    repo: jutonz/splitter
