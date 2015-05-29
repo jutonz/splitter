@@ -1,4 +1,5 @@
 language: ruby
 rvm:
 - 2.2.1
-before_install: apt-get install libtag1-dev mp3gain
+sudo: required
+before_install: sudo apt-get install libtag1-dev mp3gain
