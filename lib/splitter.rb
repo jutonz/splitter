@@ -1,6 +1,8 @@
 require 'splitter/version'
 require 'splitter/exceptions'
 require 'splitter/replay_gain'
+require 'splitter/tags'
+require 'splitter/standards_enforcer'
 require 'fileutils'
 require 'rubycue'
 require 'when_was'
@@ -23,14 +25,23 @@ module Splitter
       self.cuefile = cuefile
     end
 
-    def split!
-      split_to! Splitter.determine_output_folder(cuefile)
+    def split!(options = {})
+      output_folder = options[:to]
+      if File.exist? output_folder
+        if options[:force]
+          FileUtils.rm_r output_folder
+        else
+          raise OutputFolderExists.new output_folder
+        end
+      end
+      split_to! output_folder
     end
 
     def split_to!(output_folder)
       options = Hash.new
       options[:quiet] = true
       options[:output_folder] = output_folder
+      options[:format] = "@N2. @p - @t"
 
       if File.exist? output_folder
         raise OutputFolderExists.new output_folder
@@ -80,7 +91,7 @@ module Splitter
     end
 
     def enforce_format(file, format)
-      raise "The file #{file} must be a #{format}" unless File.extname(file) == format
+      raise "The file #{file.path} must be of type #{format}" unless File.extname(file) == format
     end
 
   end

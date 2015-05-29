@@ -27,24 +27,24 @@ command :split do |c|
     cuefile = options[:using]
 
     splitter = Splitter::Splitter.new mediafile, cuefile
-    begin 
-      splitter.split_dry_run
-    rescue Splitter::OutputFolderExists => ex
-      unless options[:force]
-        raise "The output folder #{output_folder} already exists. Use --force to override."
-      else
-        output_folder = ex.message
-        puts "Output folder exists. Deleting because of force switch."
-        FileUtils.rm_r output_folder
-      end
+    standards = Splitter::StandardsEnforcer.new mediafile, splitter.cuefile
+
+    output_folder = standards.output_folder
+    begin
+      print 'Splitting...'
+      splitter.split! to: output_folder, force: options[:force]
+      puts "done!"
+    rescue Splitter::OutputFolderExists => e
+      puts ''
+      raise "The output folder #{e.message} already exists. Use --force to overwrite."
     end
 
-    print 'Splitting...'
-    output_folder = splitter.split!
-    puts "done!"
+    progress_bar = ProgressBar.create title: 'Adjusting tags'
+    Splitter::Tags.apply standards.appropriate_tags, to: output_folder, report_progress_to: progress_bar
 
-    puts "Calculating replaygain..."
-    Splitter::ReplayGain.apply_album_gain output_folder
+    progress_bar = ProgressBar.create title: 'Applying ReplayGain'
+    replay_gain = Splitter::ReplayGain.new
+    replay_gain.apply_album_gain to: output_folder, report_progress_to: progress_bar
 
     puts "Files located in #{output_folder}"
   end

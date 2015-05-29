@@ -1,0 +1,5 @@
+global:
+  folder_name: "%ep_number (%d %B %Y)"
+  album_artist: Various Artists
+  genre: Trance
+  disc_number: 1

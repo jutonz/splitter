@@ -5,13 +5,19 @@ gemspec
 gem 'when_was'
 
 # Use cuesnap for splitting mp3's from cuefiles
-gem 'cuesnap'
+gem 'cuesnap', git: 'https://github.com/jutonz/cuesnap.git'
 
 # Use rubycue for reading cuesheets
 gem 'rubycue'
 
 # Use ruby-progresbar to prettify output of replaygain calculation
 gem 'ruby-progressbar'
+
+# Use taglib for adjusting file tags
+gem 'taglib-ruby'
+
+# Use facter to determine number of CPU cores
+gem 'facter'
 
 # Use minitest for testing
 gem 'minitest', group: :test

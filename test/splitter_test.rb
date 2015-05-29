@@ -31,7 +31,7 @@ describe Splitter do
     err = assert_raises RuntimeError do
       Splitter::Splitter.new temppdf, @tempcue
     end
-    assert_equal err.message, "The file #{temppdf.path} must be a mp3"
+    assert_equal err.message, "The file #{temppdf.path} must be of type .mp3"
   end
 
   it 'complains if the cuefile does not exist' do
@@ -45,19 +45,7 @@ describe Splitter do
     err = assert_raises RuntimeError do 
       Splitter::Splitter.new @tempfile, temppdf
     end
-    assert_equal err.message, "The file #{temppdf.path} must be a cue"
-  end
-
-  describe '.determine_output_location' do
-    it 'detects ASOT' do
-      cuesheet = 'test/cues/asot714.cue'
-      assert_equal "714 (21 May 2015)", Splitter::Splitter.determine_output_location(cuesheet)
-    end
-
-    it 'defaults to the title in the cuefile' do
-      cuesheet = 'test/cues/generic.cue'
-      assert_equal 'generic title', Splitter::Splitter.determine_output_location(cuesheet)
-    end
+    assert_equal err.message, "The file #{temppdf.path} must be of type .cue"
   end
 
 end
