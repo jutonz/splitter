@@ -1,6 +1,8 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'minitest/autorun'
 require 'minitest/reporters'
-
 require 'tempfile'
 
 require_relative '../lib/splitter'

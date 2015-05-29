@@ -18,6 +18,11 @@ module Splitter
       set_or_create_text_frame 'TPE2', other
     end
 
+    def disc_number
+      tag = base_tag.frame_list('TPOS').first
+      return tag.nil? ? nil : tag.to_s.to_i
+    end
+
     def disc_number=(other)
       return if other.nil?
       set_or_create_text_frame 'TPOS', "#{other}"
@@ -28,9 +33,17 @@ module Splitter
       base_tag.genre = other
     end
 
+    def album
+      base_tag.album
+    end
+
     def album=(other)
       return if other.nil?
       base_tag.album = other
+    end
+
+    def year 
+      base_tag.year
     end
 
     def year=(other)

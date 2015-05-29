@@ -24,3 +24,6 @@ gem 'minitest', group: :test
 
 # Use minitest-reporters to prettify mintest output
 gem 'minitest-reporters', group: :test
+
+# Use simplecov for code coverage
+gem 'simplecov', require: false, group: :test
