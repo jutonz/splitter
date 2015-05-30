@@ -12,7 +12,7 @@ GIT
 PATH
   remote: .
   specs:
-    splitter (0.0.1)
+    cuesplit (0.0.1)
       gli (= 2.13.1)
 
 GEM
@@ -79,6 +79,7 @@ PLATFORMS
 DEPENDENCIES
   aruba
   cuesnap!
+  cuesplit!
   facter
   minitest
   minitest-reporters
@@ -87,6 +88,5 @@ DEPENDENCIES
   ruby-progressbar
   rubycue
   simplecov
-  splitter!
   taglib-ruby
   when_was
