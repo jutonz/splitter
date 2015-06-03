@@ -33,20 +33,6 @@ module Splitter
       end
       workers.map(&:join)
 
-
-      # Dir.chdir directory
-      # cmd = "mp3gain -a *.mp3"
-      # begin
-      #   PTY.spawn(cmd) do |stdout, stdin, pid|
-      #     begin
-      #       stdout.each { |line| progress.increment unless progress.nil? }
-      #     rescue Errno::EIO
-      #       progress = 100 unless progress.nil?
-      #     end
-      #   end
-      # rescue PTY::ChildExited
-      #   # puts "finished calculating replaygain" 
-      # end
     end
 
     def apply_track_gain(options = {})
