@@ -90,3 +90,6 @@ DEPENDENCIES
   simplecov
   taglib-ruby
   when_was
+
+BUNDLED WITH
+   1.10.2
